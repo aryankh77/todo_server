@@ -1,16 +1,47 @@
+package com.company;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 class User {
     private String username;
     private String password;
     private String name;
-    private String imail;
     private String familyName;
+    private String email;
     private boolean isLogin;
+    private anva anva;
+    private  ArrayList<TaskInfo> tasks;
 
+
+    public User(String username, String password, String name, String familyName, String email, com.company.anva anva) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.familyName = familyName;
+        this.email = email;
+        this.anva = anva;
+        tasks = new ArrayList<>();
+    }
+
+
+    public void deleteTask(TaskInfo task){
+        tasks.remove(task);
+    }
+    public void addTask(TaskInfo task){
+        tasks.add(task);
+    }
 
     public boolean getIsLogin() {
         return isLogin;
+    }
+
+    public void setAnva(com.company.anva anva) {
+        this.anva = anva;
+    }
+
+    public com.company.anva getAnva() {
+        return anva;
     }
 
     public void setLogin(boolean login) {
@@ -41,12 +72,12 @@ class User {
         this.name = name;
     }
 
-    public String getImail() {
-        return imail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImail(String imail) {
-        this.imail = imail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFamilyName() {
@@ -67,12 +98,11 @@ class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(imail, user.imail);
+                Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, imail);
+        return Objects.hash(username, email);
     }
 }
