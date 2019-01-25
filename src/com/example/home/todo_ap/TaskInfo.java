@@ -1,9 +1,13 @@
-package com.company;
+package com.example.home.todo_ap;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Collections;
 import java.util.Objects;
 
-public class TaskInfo {
-
+public class TaskInfo implements Serializable/*,Comparable<TaskInfo>*/ {
+    private static final long serialVersionUID = 4321;
     private String taskName;
     private String date;
     private String time;
@@ -72,4 +76,26 @@ public class TaskInfo {
     public int hashCode() {
         return Objects.hash(taskName, date, time, comment, priority);
     }
+
+    /*@Override
+    public int compareTo(TaskInfo o) {
+
+        if (Date.valueOf(this.date).compareTo(Date.valueOf(o.date)) > 0) {
+            return 1;
+        }
+        if (Date.valueOf(this.date).compareTo(Date.valueOf(o.date)) == 0) {
+            if (Date.valueOf(this.time).compareTo(Date.valueOf(o.time)) > 0)
+                return 1;
+        }
+        if (Date.valueOf(this.date).compareTo(Date.valueOf(o.date)) == 0) {
+            if (Time.valueOf(this.time).compareTo(Date.valueOf(o.time)) == 0) {
+                if (this.priority == Priority.high) return 1;
+                if (this.priority == Priority.medium && (o.priority == Priority.low || o.priority == Priority.medium))
+                    return 1;
+                if (this.priority == Priority.low && o.priority == Priority.low) return 1;
+
+            }
+        }
+        return -1;
+    }*/
 }

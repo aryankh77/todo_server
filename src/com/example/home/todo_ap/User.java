@@ -1,33 +1,43 @@
-package com.company;
+package com.example.home.todo_ap;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-class User {
+
+class User implements Serializable {
+    private static final long serialVersionUID=2222;
     private String username;
     private String password;
     private String name;
     private String familyName;
     private String email;
     private boolean isLogin;
-    private anva anva;
-    private  ArrayList<TaskInfo> tasks;
+    private Type Type;
+    private ArrayList<TaskInfo> tasks;
 
 
-    public User(String username, String password, String name, String familyName, String email, com.company.anva anva) {
+    public User(String username, String password, String name, String familyName, String email, Type Type) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.familyName = familyName;
         this.email = email;
-        this.anva = anva;
+        this.Type = Type;
         tasks = new ArrayList<>();
     }
 
 
-    public void deleteTask(TaskInfo task){
-        tasks.remove(task);
+    public void deleteTask(TaskInfo task) throws DeletException{
+        if (tasks.contains(task)){
+            tasks.remove(task);}
+        else {
+            throw new DeletException();
+        }
+
     }
+
+
     public void addTask(TaskInfo task){
         tasks.add(task);
     }
@@ -36,12 +46,12 @@ class User {
         return isLogin;
     }
 
-    public void setAnva(com.company.anva anva) {
-        this.anva = anva;
+    public void setType(Type type) {
+        this.Type = type;
     }
 
-    public com.company.anva getAnva() {
-        return anva;
+    public Type getType() {
+        return Type;
     }
 
     public void setLogin(boolean login) {
@@ -90,6 +100,15 @@ class User {
 
     public boolean isLogin() {
         return isLogin;
+    }
+
+    public void setTasks(ArrayList<TaskInfo> tasks) {
+        this.tasks = tasks;
+    }
+
+    public ArrayList<TaskInfo> getTasks() {
+
+        return tasks;
     }
 
     @Override
