@@ -3,10 +3,12 @@ package com.example.home.todo_ap;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Objects;
 
-public class TaskInfo implements Serializable/*,Comparable<TaskInfo>*/ {
+public class TaskInfo implements Serializable,Comparable<TaskInfo> {
     private static final long serialVersionUID = 4321;
     private String taskName;
     private String date;
@@ -77,25 +79,17 @@ public class TaskInfo implements Serializable/*,Comparable<TaskInfo>*/ {
         return Objects.hash(taskName, date, time, comment, priority);
     }
 
-    /*@Override
+    @Override
     public int compareTo(TaskInfo o) {
+        if(o.date.compareTo(this.date) == 0)
+        {
+            if(this.priority == o.priority) return 0;
+            if(this.priority == Priority.high) return 1;
+            if(this.priority == Priority.low) return -1;
+            if(o.priority == Priority.high) return -1;
+            if(o.priority == Priority.low) return 1;
 
-        if (Date.valueOf(this.date).compareTo(Date.valueOf(o.date)) > 0) {
-            return 1;
         }
-        if (Date.valueOf(this.date).compareTo(Date.valueOf(o.date)) == 0) {
-            if (Date.valueOf(this.time).compareTo(Date.valueOf(o.time)) > 0)
-                return 1;
-        }
-        if (Date.valueOf(this.date).compareTo(Date.valueOf(o.date)) == 0) {
-            if (Time.valueOf(this.time).compareTo(Date.valueOf(o.time)) == 0) {
-                if (this.priority == Priority.high) return 1;
-                if (this.priority == Priority.medium && (o.priority == Priority.low || o.priority == Priority.medium))
-                    return 1;
-                if (this.priority == Priority.low && o.priority == Priority.low) return 1;
-
-            }
-        }
-        return -1;
-    }*/
+        return -1 * o.date.compareTo(this.date);
+    }
 }

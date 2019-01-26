@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
 
@@ -121,6 +122,7 @@ class ClientHandler extends Thread {
                     case "get tasks":
                         user= (User) request.getSerializable();
                         ArrayList<TaskInfo> arrayList=data.findByUsername(user.getUsername()).getTasks();
+                        Collections.sort(arrayList);
                         send(new Request(null,"sucess",arrayList));
                         break;
                     case "delete task":
@@ -148,6 +150,7 @@ class ClientHandler extends Thread {
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
+            data.serialize();
             e.printStackTrace();
         }
 

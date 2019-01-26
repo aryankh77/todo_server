@@ -15,7 +15,6 @@ public class DataBase implements Serializable {
     private static DataBase instance;
 
     static {
-        //Initializing database from the fileInputStream
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("database.ser"))) {
             instance = (DataBase) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
